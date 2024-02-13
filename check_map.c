@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:58:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/13 17:19:19 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:53:31 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,59 @@ int	check_map_content(t_game *map)
 	return (0);
 }
 
+int	check_map_rectangle(t_game *map)
+{
+	int	i;
+
+	i = 0;
+	map->map_lenght = ft_strlen_so(map->map[0]);
+	while (i < map->map_height)
+	{
+		printf("map[%d] = %d\n", i, ft_strlen_so(map->map[i]));//DEBUG
+		if (ft_strlen_so(map->map[i]) != map->map_lenght)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	check_map_close(t_game *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->map[0][i])
+	{
+		if (map->map[0][i] != '1')
+			return (1);
+		i++;
+	}
+	i = 0;
+	while (map->map[map->map_height - 1][i])
+	{
+		if (map->map[map->map_height - 1][i] != '1')
+			return (1);
+		i++;
+	}
+	i = 0;
+	while (i < map->map_height)
+	{
+		if (map->map[i][0] != '1' || map->map[i][map->map_lenght - 1] != '1')
+			return (1);
+		i++;
+	}
+	return (0);
+
+}
+
+
 int	check_map(t_game *map)
 {
 	if (check_map_content(map) == 1)
+		return (1);
+	if (check_map_rectangle(map) == 1)
+		return (1);
+	if (check_map_close(map) == 1)
 		return (1);
 	return (0);
 }

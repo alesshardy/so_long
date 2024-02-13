@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:13:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/13 17:20:04 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:53:17 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_game
 //PARSSING
 int		check_extension(char *str);
 int		check_map_content(t_game *map);
+int		check_map_rectangle(t_game *map);
+int		check_map_close(t_game *map);
 int		check_map(t_game *map);
 char	**get_map(t_game *get_map, char *file_name);
 int		ft_strlen_so(char *str);

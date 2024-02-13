@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:33:01 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/13 15:08:12 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:46:55 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_strlen_so(char *str)
 {
 	int	i;
 
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
