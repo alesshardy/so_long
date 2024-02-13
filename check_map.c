@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:58:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/13 17:53:31 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:09:07 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ int	check_map_close(t_game *map)
 }
 
 
-int	check_map(t_game *map)
+void	check_map(t_game *map)
 {
 	if (check_map_content(map) == 1)
-		return (1);
+		return (exit_error(map, "Error\nMap content not valid\n"));
 	if (check_map_rectangle(map) == 1)
-		return (1);
+		return (exit_error(map, "Error\nMap not rectangle\n"));
 	if (check_map_close(map) == 1)
-		return (1);
-	return (0);
+		return (exit_error(map, "Error\nMap not close\n"));
+	ft_printf("MAP OK\n");
 }

@@ -6,26 +6,13 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:44:59 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/13 15:55:00 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/13 18:10:08 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <sys/stat.h>
 #include <fcntl.h>
-
-void	liberer_map(t_game *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->map[i])
-	{
-		free(map->map[i]);
-		i++;
-	}
-	free(map->map);
-}
 
 /*int get_map(t_game*map, char *file_name) {
     int fd = open(file_name, O_RDONLY);
@@ -103,11 +90,11 @@ char    **get_map(t_game *get_map, char *file_name)
         line = ft_strjoin(line, temp);
         i++;
     }
-    printf("%s\n", line);
+    printf("%s\n", line);//DEBUG
     get_map->map_height = i;
-    printf("%d\n", get_map->map_height);
+    printf("%d\n", get_map->map_height);//DEBUG
     map = ft_split(line, '\n');
-    int j = 0;
+    int j = 0;//DEBUG
     while (map[j])
     {
         printf("%s\n", map[j]);

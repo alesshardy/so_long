@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 17:16:05 by apintus           #+#    #+#              #
-#    Updated: 2024/02/13 16:55:34 by apintus          ###   ########.fr        #
+#    Updated: 2024/02/13 18:07:47 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = main.c\
 		check_extension.c\
 		get_map.c\
 		check_map.c\
+		exit.c\
 
 
 OBJS = $(SRCS:.c=.o)
