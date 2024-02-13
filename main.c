@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:12:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/12 17:38:47 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:54:28 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,21 @@ void	visual_map(char **map)
 
 int	main (int argc, char **argv)
 {
-	t_game_map	*map;
+	t_game	*map;
 
-	map = malloc(sizeof(t_game_map));
+	map = malloc(sizeof(t_game));
+	if (map == NULL)
+		return (printf("Malloc error\n"), 1);
 	if (argc != 2 || check_extension(argv[1]))
 		return (printf("extension n'est pas valide\n"), 1);
 
-	get_map(map, argv[1]);
-	visual_map(map->map);
+	map->map = get_map(map, argv[1]);
+	//visual_map(map->map);
 
-	/*if (check_map(&map) == 1)
+	if (check_map(map) == 1)
 		return (printf("Map pas valide\n"), 1);
 	else
-		return (printf("MAP OK\n"), 0);*/
-	
+		return (printf("MAP OK\n"), 0);
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:44:59 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/12 18:27:28 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/13 15:55:00 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-void	liberer_map(t_game_map *map)
+void	liberer_map(t_game *map)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	liberer_map(t_game_map *map)
 	free(map->map);
 }
 
-int get_map(t_game_map *map, char *file_name) {
+/*int get_map(t_game*map, char *file_name) {
     int fd = open(file_name, O_RDONLY);
     if (fd < 0) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -77,4 +77,41 @@ int get_map(t_game_map *map, char *file_name) {
 
     close(fd);
     return 0;
+}*/
+
+char    **get_map(t_game *get_map, char *file_name)
+{
+    int fd;
+    int i;
+    char *line;
+    char *temp;
+    char **map;
+
+    i = 0;
+    line = "";
+    fd = open(file_name, O_RDONLY);
+    if (fd < 0)
+    {
+        perror("Erreur lors de l'ouverture du fichier");
+        return (NULL);
+    }
+    while (1)
+    {
+        temp = get_next_line(fd, 0);
+        if (temp == NULL)
+            break;
+        line = ft_strjoin(line, temp);
+        i++;
+    }
+    printf("%s\n", line);
+    get_map->map_height = i;
+    printf("%d\n", get_map->map_height);
+    map = ft_split(line, '\n');
+    int j = 0;
+    while (map[j])
+    {
+        printf("%s\n", map[j]);
+        j++;
+    }
+    return (map);
 }

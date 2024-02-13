@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 17:16:05 by apintus           #+#    #+#              #
-#    Updated: 2024/02/12 17:08:44 by apintus          ###   ########.fr        #
+#    Updated: 2024/02/13 16:55:34 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,9 @@ MAKE_LIB = ar -rcs
 
 SRCS = main.c\
 		check_extension.c\
-		map_parsing.c\
 		get_map.c\
-		
+		check_map.c\
+
 
 OBJS = $(SRCS:.c=.o)
 
