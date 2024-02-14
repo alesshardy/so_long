@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:13:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/13 18:10:32 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:51:09 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 //STRUCT
 typedef struct s_game
@@ -41,8 +43,10 @@ void	check_map(t_game *map);
 char	**get_map(t_game *get_map, char *file_name);
 int		ft_strlen_so(char *str);
 void	free_map(t_game *map);
+void	init_count(t_game *map);
 
 //EXIT
 void	exit_error(t_game *map, char *str);
+void	exit_read(t_game *map, char *str);
 
 #endif

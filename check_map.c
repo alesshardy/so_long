@@ -6,11 +6,18 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:58:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/13 18:09:07 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:34:19 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	init_count(t_game *map)
+{
+	map->count_c = 0;
+	map->count_e = 0;
+	map->count_p = 0;
+}
 
 int	check_map_content(t_game *map)
 {
@@ -50,7 +57,6 @@ int	check_map_rectangle(t_game *map)
 	map->map_lenght = ft_strlen_so(map->map[0]);
 	while (i < map->map_height)
 	{
-		printf("map[%d] = %d\n", i, ft_strlen_so(map->map[i]));//DEBUG
 		if (ft_strlen_so(map->map[i]) != map->map_lenght)
 			return (1);
 		i++;
@@ -90,6 +96,7 @@ int	check_map_close(t_game *map)
 
 void	check_map(t_game *map)
 {
+	init_count(map);
 	if (check_map_content(map) == 1)
 		return (exit_error(map, "Error\nMap content not valid\n"));
 	if (check_map_rectangle(map) == 1)
