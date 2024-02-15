@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 17:16:05 by apintus           #+#    #+#              #
-#    Updated: 2024/02/13 18:07:47 by apintus          ###   ########.fr        #
+#    Updated: 2024/02/15 12:34:48 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = main.c\
 		get_map.c\
 		check_map.c\
 		exit.c\
+		check_flood_fill.c\
 
 
 OBJS = $(SRCS:.c=.o)

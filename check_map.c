@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:58:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/14 16:34:19 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/15 12:28:48 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ int	check_map_content(t_game *map)
 				&& map->map[i][j] != 'P' && map->map[i][j] != 'E'
 				&& map->map[i][j] != 'C')
 				return (1);
-			else if (map->map[i][j] == 'P')
+			else if (map->map[i][j] == 'P')//recup positon P (x/y)
+			{
+				map->pos.x = j;
+				map->pos.y = i;
 				map->count_p++;
+			}
 			else if (map->map[i][j] == 'E')
 				map->count_e++;
 			else if (map->map[i][j] == 'C')
@@ -103,5 +107,7 @@ void	check_map(t_game *map)
 		return (exit_error(map, "Error\nMap not rectangle\n"));
 	if (check_map_close(map) == 1)
 		return (exit_error(map, "Error\nMap not close\n"));
+	if (check_map_flood_fill(map) == 1)
+		return (exit_error(map, "Error\nAll collectibles or exit not accessible\n"));
 	ft_printf("MAP OK\n");
 }

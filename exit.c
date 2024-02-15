@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 18:03:35 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/14 15:51:17 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/15 12:48:28 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ void	free_map(t_game *map)
 	}
 	free(map->map);
 	free(map);
+}
+
+void	free_copy(char **copy)
+{
+	int	i;
+
+	i = 0;
+	while (copy[i])
+	{
+		free(copy[i]);
+		i++;
+	}
+	free(copy);
 }
 
 

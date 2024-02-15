@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:44:59 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/14 16:26:55 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/15 12:52:08 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ char    **get_map(t_game *get_map, char *file_name)
     map = ft_split(line, '\n');
     close(fd);
     free(line);
-    int j = 0;//DEBUG
-    while (map[j])
-    {
-        printf("%s\n", map[j]);
-        j++;
-    }
+    visual_map(map);//DEBUG
     return (map);
 }
