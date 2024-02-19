@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:12:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/14 13:08:26 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/19 15:31:11 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	main (int argc, char **argv)
 	map->map = get_map(map, argv[1]);
 	//visual_map(map->map);
 	check_map(map);
+	map->mlx = mlx_init();
+	init_game(map);
+	mlx_hook(map->win, 2, 1L << 0, key_pressed, map); //key_hook
+	//mlx_hook(map->win, 17, 1L << 17, close_game, map); //close_hook
+	mlx_loop(map->mlx);
 	free_map(map);
 	return (0);
 }

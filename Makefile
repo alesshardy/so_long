@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 17:16:05 by apintus           #+#    #+#              #
-#    Updated: 2024/02/15 12:34:48 by apintus          ###   ########.fr        #
+#    Updated: 2024/02/19 15:27:33 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra -g
 MAKE_LIB = ar -rcs
+MLX = -L mlx -l mlx -I mlx -lXext -lX11 -lm -lz
 
 ##########################################################
 ## SOURCES
@@ -29,6 +30,8 @@ SRCS = main.c\
 		check_map.c\
 		exit.c\
 		check_flood_fill.c\
+		game.c\
+		move.c\
 
 
 OBJS = $(SRCS:.c=.o)
@@ -44,7 +47,8 @@ LIBFT_PATH = $(LIBFT_DIR)/libft.a
 all : $(NAME) $(LIBFT_PATH)
 
 $(NAME) : $(ARCHIVE) $(LIBFT_PATH)
-	$(CC) $(ARCHIVE) $(LIBFT_PATH) -o $(NAME)
+	make -C mlx
+	$(CC) $(ARCHIVE) $(LIBFT_PATH) $(MLX) -o $(NAME)
 
 $(ARCHIVE) : $(OBJS)
 	$(MAKE_LIB) $(ARCHIVE) $(OBJS)
@@ -59,6 +63,7 @@ clean :
 	$(RM) $(OBJS) $(ARCHIVE)
 	$(RM) $(OBJS_BONUS)
 	$(LIBFT_MAKE_COMMAND) clean
+	make -C mlx clean
 
 fclean : clean
 	$(RM) $(NAME)

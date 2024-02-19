@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:13:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/15 13:24:44 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/19 16:03:54 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,31 @@
 # include <string.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include "mlx/mlx.h"
+
+//key_hook
+enum			keys
+{
+	KEY_ESC = 65307,
+	KEY_W = 119,
+	KEY_UP = 65362,
+	KEY_S = 115,
+	KEY_DOWN = 65364,
+	KEY_A = 97,
+	KEY_LEFT = 65361,
+	KEY_D = 100,
+	KEY_RIGHT = 65363,
+};
+
+//IMAGE
+typedef struct s_img
+{
+	void	*floor;
+	void	*wall;
+	void	*exit;
+	void	*player;
+	void	*collect;
+}	t_img;
 
 //STRUCT
 typedef struct s_pos
@@ -36,9 +61,12 @@ typedef struct s_game
 	int	count_c;
 	int	count_e;
 	int	count_p;
+	int	count_steps;
 	char **map;
-	int	nombre_lignes;
+	void	*mlx;
+	void	*win;
 	t_pos	pos;
+	t_img	img;
 }	t_game;
 
 //PARSSING
@@ -64,5 +92,16 @@ void	free_map(t_game *map);
 
 //VISUAL
 void	visual_map(char **map);
+
+//GAME
+void	init_game(t_game *map);
+void	get_img(t_game *map);
+int		key_pressed(int keycode, t_game *map);
+void	put_background(t_game *map);
+void	put_img(t_game *map);
+void	move_up(t_game *map);
+void	move_down(t_game *map);
+void	move_left(t_game *map);
+void	move_right(t_game *map);
 
 #endif
