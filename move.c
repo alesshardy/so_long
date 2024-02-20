@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:22:06 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/19 16:19:55 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/20 12:47:04 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,31 @@
 
 void 		exit_game(t_game *map)
 {
+	map->count_steps += 1;
+	ft_printf("steps %d\n", map->count_steps);
 	printf("You win\n");//DEBUG
-	mlx_destroy_window(map->mlx, map->win);
 	mlx_destroy_image(map->mlx, map->img.floor);
-	mlx_destroy_image(map->mlx, map->img.wall);
-	mlx_destroy_image(map->mlx, map->img.exit);
 	mlx_destroy_image(map->mlx, map->img.player);
 	mlx_destroy_image(map->mlx, map->img.collect);
+	destroy_wall(map);
+	destroy_exit(map);
+	mlx_destroy_window(map->mlx, map->win);
 	mlx_destroy_display(map->mlx);
 	free_map(map);
 	exit(0);
+}
+void display_step_counter(t_game *map)
+{
+    char *message;
+    char *step_count;
+
+    step_count = ft_itoa(map->count_steps); // Convert step count to string
+    message = ft_strjoin("Step count: ", step_count); // Create message
+
+    mlx_string_put(map->mlx, map->win, 10, 10, 0xFFFFFF, message); // Display message
+
+    free(step_count); // Free memory
+    free(message);
 }
 
 void	move_up(t_game *map)

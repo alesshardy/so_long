@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:13:09 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/19 16:03:54 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/20 12:34:55 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # include <fcntl.h>
 # include "mlx/mlx.h"
 
+#define WALL_FRAMES 18
+#define EXIT_FRAMES 19
+#define FRAME_DELAY 750
+
 //key_hook
 enum			keys
 {
@@ -37,12 +41,18 @@ enum			keys
 	KEY_RIGHT = 65363,
 };
 
+//animation
+typedef struct s_anim
+{
+	void	*anim_wall[WALL_FRAMES];
+	void	*anim_exit[EXIT_FRAMES];
+	int		frame;
+}	t_anim;
+
 //IMAGE
 typedef struct s_img
 {
 	void	*floor;
-	void	*wall;
-	void	*exit;
 	void	*player;
 	void	*collect;
 }	t_img;
@@ -67,6 +77,8 @@ typedef struct s_game
 	void	*win;
 	t_pos	pos;
 	t_img	img;
+	t_anim	anim_wall;
+	t_anim	anim_exit;
 }	t_game;
 
 //PARSSING
@@ -89,6 +101,9 @@ void	exit_error(t_game *map, char *str);
 void	exit_read(t_game *map, char *str);
 void	free_copy(char **copy);
 void	free_map(t_game *map);
+int		close_game(t_game *map);
+void	destroy_wall(t_game *map);
+void	destroy_exit(t_game *map);
 
 //VISUAL
 void	visual_map(char **map);
@@ -103,5 +118,9 @@ void	move_up(t_game *map);
 void	move_down(t_game *map);
 void	move_left(t_game *map);
 void	move_right(t_game *map);
+void	display_step_counter(t_game *map);
+
+//ANIMATION
+int		update_anim(t_game *map);
 
 #endif
