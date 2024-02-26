@@ -6,7 +6,7 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:00:51 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/15 13:28:41 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/22 19:32:14 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ char	**copy_map(t_game *map)
 	copy[i] = NULL;
 	return (copy);
 }
+
 void	flood_fill(t_game *map, int x, int y, char **copy)
 {
-	//visual_map(copy); //DEBUG
 	if (x >= map->map_lenght || y >= map->map_height || copy[y][x] == 'X')
 		return ;
-	if (copy[y][x] == '1')
+	if (copy[y][x] == '1' || copy[y][x] == 'N')
 		return ;
 	if (copy[y][x] == 'E')
 	{
@@ -42,12 +42,13 @@ void	flood_fill(t_game *map, int x, int y, char **copy)
 		return ;
 	}
 	copy[y][x] = 'X';
-	flood_fill(map, x + 1, y, copy);//droite
-	flood_fill(map, x - 1, y, copy);//gauche
-	flood_fill(map, x, y + 1, copy);//bas
-	flood_fill(map, x, y - 1, copy);//haut
+	flood_fill(map, x + 1, y, copy);
+	flood_fill(map, x - 1, y, copy);
+	flood_fill(map, x, y + 1, copy);
+	flood_fill(map, x, y - 1, copy);
 	return ;
 }
+
 int	check_map_flood_fill(t_game *map)
 {
 	char	**copy;
@@ -56,9 +57,7 @@ int	check_map_flood_fill(t_game *map)
 
 	i = 0;
 	copy = copy_map(map);
-	printf("x = %d, y = %d\n", map->pos.x, map->pos.y);//DEBUG
 	flood_fill(map, map->pos.x, map->pos.y, copy);
-	visual_map(copy);
 	while (i < map->map_height)
 	{
 		j = 0;

@@ -6,17 +6,27 @@
 /*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:58:00 by apintus           #+#    #+#             */
-/*   Updated: 2024/02/15 12:28:48 by apintus          ###   ########.fr       */
+/*   Updated: 2024/02/23 12:01:46 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_count(t_game *map)
+int	check_and_count(t_game *map, char c, int i, int j)
 {
-	map->count_c = 0;
-	map->count_e = 0;
-	map->count_p = 0;
+	if (c == 'P')
+	{
+		map->pos.x = j;
+		map->pos.y = i;
+		map->count_p++;
+	}
+	else if (c == 'E')
+		map->count_e++;
+	else if (c == 'C')
+		map->count_c++;
+	else if (c != '1' && c != '0' && c != 'N')
+		return (1);
+	return (0);
 }
 
 int	check_map_content(t_game *map)
@@ -30,20 +40,8 @@ int	check_map_content(t_game *map)
 		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] != '1' && map->map[i][j] != '0'
-				&& map->map[i][j] != 'P' && map->map[i][j] != 'E'
-				&& map->map[i][j] != 'C')
+			if (check_and_count(map, map->map[i][j], i, j))
 				return (1);
-			else if (map->map[i][j] == 'P')//recup positon P (x/y)
-			{
-				map->pos.x = j;
-				map->pos.y = i;
-				map->count_p++;
-			}
-			else if (map->map[i][j] == 'E')
-				map->count_e++;
-			else if (map->map[i][j] == 'C')
-				map->count_c++;
 			j++;
 		}
 		i++;
@@ -94,13 +92,10 @@ int	check_map_close(t_game *map)
 		i++;
 	}
 	return (0);
-
 }
-
 
 void	check_map(t_game *map)
 {
-	init_count(map);
 	if (check_map_content(map) == 1)
 		return (exit_error(map, "Error\nMap content not valid\n"));
 	if (check_map_rectangle(map) == 1)
@@ -108,6 +103,5 @@ void	check_map(t_game *map)
 	if (check_map_close(map) == 1)
 		return (exit_error(map, "Error\nMap not close\n"));
 	if (check_map_flood_fill(map) == 1)
-		return (exit_error(map, "Error\nAll collectibles or exit not accessible\n"));
-	ft_printf("MAP OK\n");
+		return (exit_error(map, "Error\nCollectibles or exit not accessible\n"));
 }

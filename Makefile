@@ -6,7 +6,7 @@
 #    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 17:16:05 by apintus           #+#    #+#              #
-#    Updated: 2024/02/19 15:27:33 by apintus          ###   ########.fr        #
+#    Updated: 2024/02/22 19:03:24 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,14 @@ MLX = -L mlx -l mlx -I mlx -lXext -lX11 -lm -lz
 SRCS = main.c\
 		check_extension.c\
 		get_map.c\
+		get_image.c\
 		check_map.c\
 		exit.c\
+		destroy.c\
 		check_flood_fill.c\
 		game.c\
 		move.c\
-
+		animation.c\
 
 OBJS = $(SRCS:.c=.o)
 
